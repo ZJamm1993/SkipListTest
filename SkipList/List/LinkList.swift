@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LinkList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, CustomDebugStringConvertible where Key: Comparable, Value: Any {
+struct LinkList<Key, Value>: CustomStringConvertible, CustomDebugStringConvertible where Key: Comparable, Value: Any {
     var description: String {
         var total = "LinkList:\n"
         var node = firstNode
@@ -78,14 +78,23 @@ class LinkList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, Cust
         }
         return nil
     }
+    
+    subscript(key: Key) -> Value? {
+        set {
+            if let newVal = newValue {
+                self.setValue(newVal, for: key)
+            } else {
+                self.removeValue(for: key)
+            }
+        }
+        get {
+            return self.value(for: key)
+        }
+    }
 }
 
 extension LinkList {
-    class Node<Key, Value>: KeyValueListNodeProtocol, CustomStringConvertible, CustomDebugStringConvertible {
-        
-        deinit {
-            self.deinitPrint()
-        }
+    class Node<Key, Value>: CustomStringConvertible, CustomDebugStringConvertible {
         
         var description: String {
             var vaStr = "nil"

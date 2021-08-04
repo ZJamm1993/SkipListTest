@@ -7,7 +7,8 @@
 
 import Foundation
 
-class SkipList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, CustomDebugStringConvertible where Key: Comparable, Value: Any {
+struct SkipList<Key, Value>: CustomStringConvertible, CustomDebugStringConvertible where Key: Comparable, Value: Any {
+    
     var description: String {
         var total = "SkipList:\n"
         for i in stride(from: maxLevel - 1, through: 0, by: -1) {
@@ -55,7 +56,7 @@ class SkipList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, Cust
         return nil
     }
     
-    @discardableResult func setValue(_ value: Value, for key: Key) -> Value? {
+    @discardableResult mutating func setValue(_ value: Value, for key: Key) -> Value? {
         var node = firstNode
         var prevs = [Node<Key, Value>?](repeating: nil, count: currentMaxLevel)
         for i in stride(from: currentMaxLevel - 1, through: 0, by: -1) {
@@ -85,7 +86,7 @@ class SkipList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, Cust
         return nil // return oldvalue if need
     }
     
-    @discardableResult func removeValue(for key: Key) -> Value? {
+    @discardableResult mutating func removeValue(for key: Key) -> Value? {
         var node = firstNode
         var prevs = [Node<Key, Value>?](repeating: nil, count: currentMaxLevel)
         var exist = false
@@ -134,14 +135,23 @@ class SkipList<Key, Value> : KeyValueListProtocol, CustomStringConvertible, Cust
         }
         return lev
     }
+    
+    subscript(key: Key) -> Value? {
+        set {
+            if let newVal = newValue {
+                self.setValue(newVal, for: key)
+            } else {
+                self.removeValue(for: key)
+            }
+        }
+        get {
+            return self.value(for: key)
+        }
+    }
 }
 
 extension SkipList {
-    class Node<Key, Value>: KeyValueListNodeProtocol, CustomStringConvertible, CustomDebugStringConvertible {
-        
-        deinit {
-            self.deinitPrint()
-        }
+    class Node<Key, Value>: CustomStringConvertible, CustomDebugStringConvertible {
         
         var description: String {
             var vaStr = "nil"

@@ -16,7 +16,7 @@ func RandomInt() -> Int {
 let startTime = Date.timeIntervalSinceReferenceDate
 
 
-let list = SkipList<Int, Int>(id: 1)
+var list = SkipList<Int, Int>(id: 1)
 
 let dataSize = 10000
 
@@ -33,23 +33,28 @@ for i in stride(from: 111, through: dataSize, by: 4) {
 
 // add
 for i in 0...dataSize {
-    list.setValue(RandomInt(), for: i)
+//    list.setValue(RandomInt(), for: i)
+    list[i] = RandomInt()
 }
 for i in checkList {
-    list.setValue(i.value, for: i.key)
+//    list.setValue(i.value, for: i.key)
+    list[i.key] = i.value
 }
 
 // check
 for i in checkList {
     let checkVal = i.value
-    let val = list.value(for: i.key)
+//    let val = list.value(for: i.key)
+    let val = list[i.key]
     assert(val == checkVal, "Get Value Error")
 }
 
 // delete
 for i in deleteList {
-    list.removeValue(for: i)
-    let val = list.value(for: i)
+//    list.removeValue(for: i)
+//    let val = list.value(for: i)
+    list[i] = nil
+    let val = list[i]
     assert(val == nil, "Deleted Value Error")
 }
 
@@ -57,4 +62,4 @@ let endTime = Date.timeIntervalSinceReferenceDate
 
 print("Hello, World! Interval:", endTime - startTime)
 
-//print(list)
+print(list)
