@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1CC667FA26B9257600BD5F2A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC667F926B9257600BD5F2A /* main.swift */; };
+		1CC6680126B9258100BD5F2A /* SkipList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6680026B9258100BD5F2A /* SkipList.swift */; };
+		1CC6680426BA670600BD5F2A /* LinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6680326BA670600BD5F2A /* LinkList.swift */; };
+		1CC6680626BA700600BD5F2A /* KeyValueListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6680526BA700600BD5F2A /* KeyValueListProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		1CC667F626B9257600BD5F2A /* SkipList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SkipList; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CC667F926B9257600BD5F2A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1CC6680026B9258100BD5F2A /* SkipList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipList.swift; sourceTree = "<group>"; };
+		1CC6680326BA670600BD5F2A /* LinkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkList.swift; sourceTree = "<group>"; };
+		1CC6680526BA700600BD5F2A /* KeyValueListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueListProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +63,20 @@
 		1CC667F826B9257600BD5F2A /* SkipList */ = {
 			isa = PBXGroup;
 			children = (
+				1CC6680226BA66EC00BD5F2A /* List */,
 				1CC667F926B9257600BD5F2A /* main.swift */,
 			);
 			path = SkipList;
+			sourceTree = "<group>";
+		};
+		1CC6680226BA66EC00BD5F2A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				1CC6680526BA700600BD5F2A /* KeyValueListProtocol.swift */,
+				1CC6680026B9258100BD5F2A /* SkipList.swift */,
+				1CC6680326BA670600BD5F2A /* LinkList.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +136,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC6680126B9258100BD5F2A /* SkipList.swift in Sources */,
+				1CC6680626BA700600BD5F2A /* KeyValueListProtocol.swift in Sources */,
+				1CC6680426BA670600BD5F2A /* LinkList.swift in Sources */,
 				1CC667FA26B9257600BD5F2A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
